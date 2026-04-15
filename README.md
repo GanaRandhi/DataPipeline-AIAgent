@@ -63,7 +63,7 @@ datapipeline-AIagent/                          # ROOT (32 total files)
 │
 ├── 📂 examples/                              # EXAMPLES (3 files)
 │   ├── ecommerce_pipeline.yaml               # Example config
-│   ├── sample_output_*.py                    # Sample generated code
+│   ├── sample_output_ecommerce_analytics.py  # Sample generated code
 │   └── sample_output_README.md               # Sample docs
 │
 ├── 📂 outputs/                               # GENERATED PIPELINES (runtime)
