@@ -27,18 +27,59 @@ Pipeline Agent (Supervisor)
 ## 📁 Folder Structure
 
 ```
-data-pipeline-agent/
-├── src/
-│   ├── agents/           # Agent definitions and behaviors
-│   ├── tools/            # Reusable tools for agents
-│   ├── utils/            # Helper functions and utilities
-│   └── config/           # Configuration files
-├── tests/                # Unit and integration tests
-├── examples/             # Sample pipeline configurations
-├── outputs/              # Generated pipeline code
-├── logs/                 # Application logs
-├── requirements.txt      # Python dependencies
-└── README.md            # This file
+datapipeline-AIagent/                          # ROOT (32 total files)
+│
+├── 📄 Documentation (6 files)
+│   ├── README.md                             # Main overview
+│   ├── PROJECT_SUMMARY.md                    # Quick summary
+│   ├── SETUP.md                              # Installation guide
+│   ├── ARCHITECTURE.md                       # Technical details
+│   ├── SELF_HEALING.md                       # Self-healing guide
+│   └── FOLDER_STRUCTURE.md                   # This reference!
+│
+├── 🐍 Entry Points (2 files)
+│   ├── main.py                               # Basic CLI
+│   └── main_enhanced.py                      # Self-healing CLI
+│
+├── 📂 src/ - SOURCE CODE (11 files)
+│   ├── agents/                               # AI AGENTS (5 files)
+│   │   ├── pipeline_agent.py                 # Main LangGraph agent
+│   │   ├── enhanced_agent.py                 # Self-healing wrapper
+│   │   ├── self_healing.py                   # Healing & upgrade engines
+│   │   └── state.py                          # State management
+│   │
+│   ├── tools/                                # REUSABLE TOOLS (2 files)
+│   │   └── pipeline_tools.py                 # Schema, code gen, validation
+│   │
+│   ├── utils/                                # UTILITIES (3 files)
+│   │   ├── logger.py                         # Structured logging
+│   │   └── validators.py                     # Input validation
+│   │
+│   └── config/                               # CONFIGURATION (2 files)
+│       └── settings.py                       # App config & guardrails
+│
+├── 📂 tests/                                 # UNIT TESTS (2 files)
+│   └── test_agents.py                        # Pytest tests
+│
+├── 📂 examples/                              # EXAMPLES (3 files)
+│   ├── ecommerce_pipeline.yaml               # Example config
+│   ├── sample_output_*.py                    # Sample generated code
+│   └── sample_output_README.md               # Sample docs
+│
+├── 📂 outputs/                               # GENERATED PIPELINES (runtime)
+│   └── [pipeline_name]/
+│       ├── [pipeline_name].py                # Generated code
+│       ├── [pipeline_name]_README.md         # Generated docs
+│       └── versions/                         # Version backups
+│
+├── 📂 logs/                                  # LOGS (runtime)
+│   └── pipeline_agent.log                    # Application logs
+│
+└── ⚙️ Config Files (4 files)
+    ├── requirements.txt                      # Python dependencies
+    ├── .env.example                          # Environment template
+    └── .gitignore                            # Git ignore
+    
 ```
 
 ## 🚀 Quick Start

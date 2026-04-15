@@ -1,0 +1,97 @@
+# E-commerce Analytics Pipeline
+# Example configuration for a daily sales and inventory analytics pipeline
+
+name: ecommerce_analytics
+description: Daily sales and inventory analytics aggregation
+
+version: "1.0.0"
+
+# Data Sources
+sources:
+  - type: postgresql
+    name: transactional_db
+    host: ${POSTGRES_HOST}
+    port: 5432
+    database: ecommerce_prod
+    tables:
+      - orders
+      - order_items
+      - customers
+      - products
+      - inventory
+    
+  - type: s3
+    name: clickstream_data
+    bucket: analytics-raw-data
+    prefix: clickstream/
+    format: parquet
+    region: us-east-1
+
+# Transformation Steps
+transformations:
+  - "Join orders with order_items to get complete order details"
+  - "Calculate daily revenue by product category"
+  - "Aggregate customer lifetime value using windowed functions"
+  - "Identify trending products based on 7-day moving average"
+  - "Calculate inventory turnover ratio"
+  - "Detect anomalies in sales patterns using z-score"
+  - "Enrich with clickstream data for conversion funnel analysis"
+  - "Create customer segments based on RFM analysis"
+
+# Destination
+destination:
+  type: snowflake
+  account: ${SNOWFLAKE_ACCOUNT}
+  warehouse: ANALYTICS_WH
+  database: ANALYTICS
+  schema: sales
+  tables:
+    - daily_revenue_by_category
+    - customer_lifetime_value
+    - trending_products
+    - inventory_turnover
+    - sales_anomalies
+    - conversion_funnel
+    - customer_segments
+
+# Execution Configuration
+mode: batch
+schedule: "0 2 * * *"  # Daily at 2am UTC
+
+# Data Quality Rules
+enable_validation: true
+enable_profiling: true
+
+validation_rules:
+  - name: revenue_not_negative
+    type: check
+    condition: "SUM(revenue) >= 0"
+  
+  - name: order_count_threshold
+    type: check
+    condition: "COUNT(*) > 100"
+    
+  - name: no_future_dates
+    type: check
+    condition: "order_date <= CURRENT_DATE"
+
+# Performance Settings
+parallelism: 4
+batch_size: 10000
+timeout_minutes: 60
+
+# Monitoring
+alerts:
+  - type: email
+    recipients:
+      - data-team@company.com
+    conditions:
+      - pipeline_failed
+      - validation_failed
+      - execution_time_exceeded
+
+# Tags
+tags:
+  team: data-engineering
+  environment: production
+  cost_center: analytics
