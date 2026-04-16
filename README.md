@@ -241,29 +241,3 @@ tail -f logs/pipeline_agent.log
 # View generated pipelines
 ls -la outputs/
 ```
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests
-5. Submit a pull request
-
-## 📄 License
-
-MIT License - see LICENSE file for details
-
-## 🆘 Support
-
-- Documentation: [docs/](docs/)
-- Issues: GitHub Issues
-- Discussions: GitHub Discussions
-
-## 🔄 Changelog
-
-### v1.0.0 (2024-04-15)
-- Initial release
-- LangGraph-based architecture
-- Support for SQL, NoSQL, and file sources
-- Production-ready guardrails and monitoring
